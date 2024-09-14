@@ -83,7 +83,7 @@ function App() {
           field="title"
           header={
             <span className="table-header" onClick={handleIconClick}>
-              <i className="pi pi-chevron-down table-icon"></i>
+              <i className="pi pi-chevron-down table-icon">&#8964;</i>
               Title
             </span>
           }
