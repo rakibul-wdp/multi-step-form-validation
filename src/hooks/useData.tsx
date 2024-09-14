@@ -15,7 +15,7 @@ export const useData = (page: number = 1) => {
     const json = await response.json();
     const { data, pagination } = json;
 
-    const articles = data.map((result: any) => ({
+    const articles = data.map((result: IArticle) => ({
       id: result.id,
       title: result.title || "No title",
       place_of_origin: result.place_of_origin || "Unknown",
