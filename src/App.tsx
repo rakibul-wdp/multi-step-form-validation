@@ -3,7 +3,7 @@ import "./App.css";
 import { useData } from "./hooks/useData";
 
 function App() {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(2);
 
   const { results, isLoading, pagination } = useData(page);
 
