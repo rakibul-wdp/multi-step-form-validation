@@ -1,3 +1,4 @@
+import { PrimeReactProvider } from "primereact/api";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -13,8 +14,10 @@ const queryClient = new QueryClient({
 
 createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
-    <StrictMode>
-      <App />
-    </StrictMode>
+    <PrimeReactProvider>
+      <StrictMode>
+        <App />
+      </StrictMode>
+    </PrimeReactProvider>
   </QueryClientProvider>
 );

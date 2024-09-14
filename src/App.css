@@ -1,0 +1,47 @@
+.app-container {
+  padding: 2rem;
+  background-color: #f4f4f9;
+  font-family: "Arial", sans-serif;
+}
+
+.styled-table {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.table-icon {
+  margin-right: 8px;
+}
+
+.styled-overlay {
+  padding: 15px;
+  width: 200px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.overlay-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.overlay-input {
+  width: 100%;
+  padding: 8px;
+}
+
+.overlay-btn {
+  width: 100%;
+  background-color: #007ad9;
+  color: #fff;
+}
