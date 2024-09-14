@@ -1,6 +1,6 @@
 import { Button } from "primereact/button";
 import { Column } from "primereact/column";
-import { DataTable } from "primereact/datatable";
+import { DataTable, DataTablePageEvent } from "primereact/datatable";
 import { InputText } from "primereact/inputtext";
 import { OverlayPanel } from "primereact/overlaypanel";
 import "primereact/resources/primereact.min.css";
@@ -12,20 +12,20 @@ import { useData } from "./hooks/useData";
 function App() {
   const [page, setPage] = useState(1);
   const [inputValue, setInputValue] = useState("");
-  const [selectedArticles, setSelectedArticles] = useState<any[]>([]);
+  const [selectedArticles, setSelectedArticles] = useState<IArticle[]>([]);
   const { results, isLoading, pagination, isError } = useData(page);
-  const overlayPanelRef = useRef<any>(null);
+  const overlayPanelRef = useRef<OverlayPanel>(null);
 
   useEffect(() => {
     const storedInputValue = localStorage.getItem("inputValue");
     if (storedInputValue) setInputValue(storedInputValue);
   }, []);
 
-  const onPageChange = (e: any) => {
-    setPage(e.page + 1);
+  const onPageChange = (e: DataTablePageEvent) => {
+    if (e.page !== undefined) setPage(e.page + 1);
   };
 
-  const onSelectionChange = (e: any) => {
+  const onSelectionChange = (e: { value: IArticle[] }) => {
     setSelectedArticles(e.value);
   };
 
@@ -56,6 +56,7 @@ function App() {
   };
 
   if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching data. Please try again later.</div>;
 
   return (
     <main className="app-container">
