@@ -50,20 +50,22 @@ export default function MultiStepForm() {
     mutationFn: submitForm,
   });
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     mutation.mutate(data);
   };
 
   const onNext = async () => {
-    let isValid = false;
+    let fieldsToValidate: (keyof FormValues)[] = [];
 
-    if (currentStep === 1) {
-      isValid = await methods.trigger("personalInfo");
-    } else if (currentStep === 2) {
-      isValid = await methods.trigger("addressDetails");
-    } else if (currentStep === 3) {
-      isValid = await methods.trigger("accountSetup");
+    if (currentStep === 1) fieldsToValidate = ["personalInfo"];
+    if (currentStep === 2) fieldsToValidate = ["addressDetails"];
+    if (currentStep === 3) fieldsToValidate = ["accountSetup"];
+
+    if (currentStep === 3) {
+      fieldsToValidate = ["personalInfo", "addressDetails", "accountSetup"];
     }
+
+    const isValid = await methods.trigger(fieldsToValidate);
 
     if (isValid) {
       setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
@@ -72,6 +74,36 @@ export default function MultiStepForm() {
 
   const onPrev = () => {
     setCurrentStep((prev) => Math.max(prev - 1, 1));
+  };
+
+  const isCurrentStepValid = () => {
+    if (currentStep === 4) {
+      try {
+        formSchema.parse(methods.getValues());
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    const values = methods.getValues();
+    try {
+      if (currentStep === 1) {
+        formSchema.pick({ personalInfo: true }).parse(values);
+        return true;
+      }
+      if (currentStep === 2) {
+        formSchema.pick({ addressDetails: true }).parse(values);
+        return true;
+      }
+      if (currentStep === 3) {
+        formSchema.pick({ accountSetup: true }).parse(values);
+        return true;
+      }
+      return false;
+    } catch {
+      return false;
+    }
   };
 
   return (
@@ -105,7 +137,7 @@ export default function MultiStepForm() {
               onPrev={onPrev}
               onNext={onNext}
               isSubmitting={mutation.isPending}
-              isValid={methods.formState.isValid}
+              isValid={isCurrentStepValid()}
             />
           </form>
         </FormProvider>

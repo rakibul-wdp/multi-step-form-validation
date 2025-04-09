@@ -45,7 +45,7 @@ export function FormNavigation({
       ) : (
         <Button
           type="submit"
-          disabled={isSubmitting || !isValid}
+          disabled={isSubmitting}
           className="bg-green-600 hover:bg-green-700 disabled:opacity-50"
         >
           {isSubmitting ? "Submitting..." : "Submit"}
