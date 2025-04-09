@@ -16,10 +16,10 @@ A modern, responsive multi-step form with comprehensive validation built using N
 
 ## 🛠 Tech Stack
 
-- **Framework**: [Next.js](https://nextjs.org/) (App Router)
-- **Form Handling**: [React Hook Form](https://react-hook-form.com/)
-- **Validation**: [Zod](https://zod.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4
+- **Framework**: Next.js (App Router)
+- **Form Handling**: React Hook Form
+- **Validation**: Zod
+- **Styling**: Tailwind CSS v4
 - **State Management**: React Query
 - **UI Components**: Custom design system
 
