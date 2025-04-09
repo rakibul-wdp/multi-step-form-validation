@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { FormValues, formSchema } from "./form-schema";
@@ -24,12 +24,7 @@ export default function MultiStepForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 4;
 
-  const {
-    handleSubmit,
-    control,
-    formState: { isValid, isSubmitting },
-    trigger,
-  } = useForm<FormValues>({
+  const methods = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
     defaultValues: {
@@ -63,11 +58,11 @@ export default function MultiStepForm() {
     let isValid = false;
 
     if (currentStep === 1) {
-      isValid = await trigger("personalInfo");
+      isValid = await methods.trigger("personalInfo");
     } else if (currentStep === 2) {
-      isValid = await trigger("addressDetails");
+      isValid = await methods.trigger("addressDetails");
     } else if (currentStep === 3) {
-      isValid = await trigger("accountSetup");
+      isValid = await methods.trigger("accountSetup");
     }
 
     if (isValid) {
@@ -97,21 +92,23 @@ export default function MultiStepForm() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {currentStep === 1 && <FormStep1 />}
-          {currentStep === 2 && <FormStep2 />}
-          {currentStep === 3 && <FormStep3 />}
-          {currentStep === 4 && <SummaryStep />}
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            {currentStep === 1 && <FormStep1 />}
+            {currentStep === 2 && <FormStep2 />}
+            {currentStep === 3 && <FormStep3 />}
+            {currentStep === 4 && <SummaryStep />}
 
-          <FormNavigation
-            currentStep={currentStep}
-            totalSteps={totalSteps}
-            onPrev={onPrev}
-            onNext={onNext}
-            isSubmitting={mutation.isPending}
-            isValid={isValid}
-          />
-        </form>
+            <FormNavigation
+              currentStep={currentStep}
+              totalSteps={totalSteps}
+              onPrev={onPrev}
+              onNext={onNext}
+              isSubmitting={mutation.isPending}
+              isValid={methods.formState.isValid}
+            />
+          </form>
+        </FormProvider>
 
         {mutation.isSuccess && (
           <div className="mt-4 p-4 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded">
