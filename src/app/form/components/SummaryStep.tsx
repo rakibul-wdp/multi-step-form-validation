@@ -9,8 +9,8 @@ export function SummaryStep() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
-        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+      <div className="bg-white dark:bg-gray-800 shadow rounded-lg px-6">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
           Personal Information
         </h3>
         <div className="space-y-2">
@@ -29,8 +29,8 @@ export function SummaryStep() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
-        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+      <div className="bg-white dark:bg-gray-800 shadow rounded-lg px-6">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
           Address Details
         </h3>
         <div className="space-y-2">
@@ -49,8 +49,8 @@ export function SummaryStep() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
-        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+      <div className="bg-white dark:bg-gray-800 shadow rounded-lg px-6">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
           Account Setup
         </h3>
         <div className="space-y-2">

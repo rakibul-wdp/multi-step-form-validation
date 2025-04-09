@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormValues, formSchema } from "./form-schema";
 import { FormStep1 } from "./components/FormStep1";
 import { FormStep2 } from "./components/FormStep2";
@@ -22,6 +22,7 @@ async function submitForm(data: FormValues) {
 
 export default function MultiStepForm() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const totalSteps = 4;
 
   const methods = useForm<FormValues>({
@@ -53,6 +54,16 @@ export default function MultiStepForm() {
   const onSubmit = (data: FormValues) => {
     mutation.mutate(data);
   };
+
+  useEffect(() => {
+    if (mutation.isSuccess) {
+      setShowSuccessMessage(true);
+      const timer = setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [mutation.isSuccess]);
 
   const onNext = async () => {
     let fieldsToValidate: (keyof FormValues)[] = [];
@@ -100,7 +111,7 @@ export default function MultiStepForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-5 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-8">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -135,7 +146,7 @@ export default function MultiStepForm() {
           </form>
         </FormProvider>
 
-        {mutation.isSuccess && (
+        {showSuccessMessage && (
           <div className="mt-4 p-4 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded">
             Form submitted successfully!
           </div>

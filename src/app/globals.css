@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: oklch(0.53 0.12 118.34);
+  --color-secondary: oklch(0.84 0.18 117.33);
+  --spacing: 0.5rem;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -24,6 +30,39 @@ body {
   );
 }
 
+@variant dark {
+  :root {
+    --color-primary: oklch(0.63 0.15 118.34);
+    --color-secondary: oklch(0.74 0.2 117.33);
+  }
+
+  .btn-outline {
+    border-color: rgb(75 85 99);
+  }
+  .btn-outline:hover {
+    background-color: rgb(31 41 55);
+  }
+}
+
 input {
-  @apply border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white;
+  border: 1px solid rgb(209 213 219);
+  padding: 10px;
+  border-radius: 0.375rem;
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  box-shadow: var(--tw-shadow);
+}
+input:focus {
+  border-color: rgb(59 130 246);
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
+    var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
+    calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
+    var(--tw-shadow);
+}
+
+.dark input {
+  border-color: rgb(75 85 99);
+  background-color: rgb(31 41 55);
+  color: white;
 }
