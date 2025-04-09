@@ -51,7 +51,7 @@ multi-step-form/
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/your-username/multi-step-form.git
+   git clone https://github.com/rakibul-wdp/multi-step-form-validation.git
    ```
 2. Install dependencies
    ```bash
@@ -97,6 +97,6 @@ export const formSchema = z.object({
 
 ## ✉️ Contact
 
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - youremail@example.com
+Md. Rakibul Islam - [@rakibul_wdp](https://x.com/rakibul_wdp) - rakibul.wdp@gmail.com
 
-Project Link: [https://github.com/your-username/multi-step-form](https://github.com/your-username/multi-step-form)
+Project Link: [https://github.com/rakibul-wdp/multi-step-form-validation](https://github.com/rakibul-wdp/multi-step-form-validation)
