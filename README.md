@@ -1,6 +1,4 @@
-# Multi-Step Form with Validation | [Live Site](https://multi-step-form-validation-rakibul-wdp.vercel.app)
-
-![Project Screenshot](./public/screenshot.png) <!-- Add your screenshot here -->
+# Multi-Step Form with Validation | [Live Site](https://multi-step-form-validation-rakibul-wdp.vercel.app
 
 A modern, responsive multi-step form with comprehensive validation built using Next.js, TypeScript, React Hook Form, and Tailwind CSS.
 
