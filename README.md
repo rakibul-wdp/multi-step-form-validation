@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Multi-Step Form with Validation
 
-## Getting Started
+![Project Screenshot](./public/screenshot.png) <!-- Add your screenshot here -->
 
-First, run the development server:
+A modern, responsive multi-step form with comprehensive validation built using Next.js, TypeScript, React Hook Form, and Tailwind CSS.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+
+- **Multi-step workflow** with progress indicator
+- **Client-side validation** using Zod schema validation
+- **Beautiful UI** with dark/light mode support
+- **Responsive design** works on all devices
+- **Form persistence** between steps
+- **Summary review** before submission
+- **API simulation** with React Query
+
+## 🛠 Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Form Handling**: [React Hook Form](https://react-hook-form.com/)
+- **Validation**: [Zod](https://zod.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4
+- **State Management**: React Query
+- **UI Components**: Custom design system
+
+## 📦 Folder Structure
+
+```
+multi-step-form/
+├── app/
+│   ├── form/                 # Form route group
+│   │   ├── components/       # Form step components
+│   │   ├── form-schema.ts    # Zod validation schema
+│   │   └── page.tsx          # Main form logic
+├── components/
+│   ├── ui/                   # UI primitives
+│   └── ThemeToggle.tsx       # Dark mode toggle
+├── lib/                      # Utilities and providers
+├── styles/                   # Global styles
+└── public/                   # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js v18+
+- npm or yarn
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository
+   ```bash
+   git clone https://github.com/your-username/multi-step-form.git
+   ```
+2. Install dependencies
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+3. Start the development server
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔍 Validation Rules
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Step | Field            | Validation              |
+| ---- | ---------------- | ----------------------- |
+| 1    | Full Name        | Required                |
+| 1    | Email            | Required, valid format  |
+| 1    | Phone            | Required, min 10 digits |
+| 2    | Street Address   | Required                |
+| 2    | City             | Required                |
+| 2    | Zip Code         | Required, numbers only  |
+| 3    | Username         | Required, min 4 chars   |
+| 3    | Password         | Required, min 6 chars   |
+| 3    | Confirm Password | Must match password     |
 
-## Deploy on Vercel
+## 📝 Code Highlights
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```typescript
+// Form schema validation
+export const formSchema = z.object({
+  personalInfo: z.object({
+    fullName: z.string().min(1, "Full name is required"),
+    email: z.string().email("Invalid email address"),
+    phoneNumber: z.string().min(10, "Phone number must be at least 10 digits"),
+  }),
+  // ... other schemas
+});
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ✉️ Contact
+
+Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - youremail@example.com
+
+Project Link: [https://github.com/your-username/multi-step-form](https://github.com/your-username/multi-step-form)
