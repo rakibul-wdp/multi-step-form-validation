@@ -33,7 +33,7 @@ export function FormNavigation({
       ) : (
         <div></div>
       )}
-      {currentStep < totalSteps ? (
+      {currentStep < totalSteps && (
         <Button
           type="button"
           onClick={onNext}
@@ -42,7 +42,8 @@ export function FormNavigation({
         >
           Next
         </Button>
-      ) : (
+      )}
+      {currentStep === totalSteps && (
         <Button
           type="submit"
           disabled={isSubmitting}

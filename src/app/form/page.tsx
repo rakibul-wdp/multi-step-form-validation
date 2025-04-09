@@ -50,7 +50,7 @@ export default function MultiStepForm() {
     mutationFn: submitForm,
   });
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = (data: FormValues) => {
     mutation.mutate(data);
   };
 
@@ -77,14 +77,7 @@ export default function MultiStepForm() {
   };
 
   const isCurrentStepValid = () => {
-    if (currentStep === 4) {
-      try {
-        formSchema.parse(methods.getValues());
-        return true;
-      } catch {
-        return false;
-      }
-    }
+    if (currentStep === 4) return true;
 
     const values = methods.getValues();
     try {
